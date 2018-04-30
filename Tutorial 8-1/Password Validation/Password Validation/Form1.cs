@@ -25,7 +25,9 @@ namespace Password_Validation
             // Count the uppercase characters in str.
             // look at each individual character in the str 
             // and increment the count if that char is uppercase
-
+            for(int i = 0; i < str.Length; i++)
+                if (char.IsUpper(str, i))
+                    upperCase++;
             // Return the number of uppercase characters.
             return upperCase;
         }
@@ -37,7 +39,9 @@ namespace Password_Validation
             int lowerCase = 0;  // The number of lowercase letters
 
             // Count the lowercase characters in str.
-
+            for (int i = 0; i < str.Length; i++)
+                if (char.IsLower(str, i))
+                    lowerCase++;
 
             // Return the number of lowercase characters.
             return lowerCase;
@@ -50,7 +54,9 @@ namespace Password_Validation
             int digits = 0;  // The number of digits
 
             // Count the digits in str.
-
+            for (int i = 0; i < str.Length; i++)
+                if (char.IsDigit(str, i))
+                    digits++;
 
             // Return the number of digits.
             return digits;
@@ -64,7 +70,7 @@ namespace Password_Validation
             string password = passwordTextBox.Text;
 
             // Validate the password.
-            if (true)
+            if (password.Length >= MIN_LENGTH && NumberLowerCase(password) > 0 && NumberUpperCase(password) > 0 && NumberDigits(password) > 0)
             {
                 MessageBox.Show("The password is valid.");
             }

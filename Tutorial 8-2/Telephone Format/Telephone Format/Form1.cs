@@ -23,7 +23,9 @@ namespace Telephone_Format
             int digits = 0;  // The number of digits
 
             // Count the digits in str.
-
+            for (int i = 0; i < str.Length; i++)
+                if (char.IsDigit(str, i))
+                    digits++;
             // Return the number of digits.
             return digits;
         }
@@ -36,8 +38,12 @@ namespace Telephone_Format
             const int VALID_LENGTH = 10;  // Length of a valid string
             bool valid = true;   // Flag to indicate validity
 
-
-            // Return the status.
+            if (NumberDigits(str) != VALID_LENGTH)
+                valid = false;
+            for (int i = 0; i < str.Length; i++)
+                if (!char.IsDigit(str, i))
+                    return false;
+                    // Return the status.
             return valid;
         }
 
@@ -46,7 +52,10 @@ namespace Telephone_Format
         // phone number format is ###-###-####
         private void TelephoneFormat(ref string str)
         {
-
+            str = str.Insert(0, "(");
+            str = str.Insert(4, ")");
+            str = str.Insert(5, "-");
+            str = str.Insert(9, "-");
         }
 
         private void formatButton_Click(object sender, EventArgs e)
@@ -56,8 +65,9 @@ namespace Telephone_Format
 
             // If the input is a valid number, format it
             // and display it.
-            if (true)
+            if ((IsValidNumber(input)))
             {
+                TelephoneFormat(ref input);
                 MessageBox.Show(input);
             }
             else
