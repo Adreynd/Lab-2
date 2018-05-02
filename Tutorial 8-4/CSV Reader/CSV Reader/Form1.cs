@@ -38,11 +38,13 @@ namespace CSV_Reader
             {
                 StreamReader inputFile; // To read the file
                 string line;            // To hold a line from the file
+                string[] tokens;        // Holds the individual test scores as token after a line has been split
+                int[] scores;           // Array that holds test scores after they have been converted to ints
                 double average = 0;     // Test score average
                 int count = 0;          // Holds the student index
 
                 // Create a delimiter array.
-                char[] delim = { ',' };
+                char delim = ',';
 
                 // Open the CSV file.
                 inputFile = File.OpenText("..\\..\\Grades.csv");
@@ -52,10 +54,14 @@ namespace CSV_Reader
                     // Read a line from the file.
                     line = inputFile.ReadLine();
                     // Get the test scores as tokens.
-                    for (int i = 0; i < line.Length; i++)
-                        delim[i] = line[i];
+                    tokens = line.Split(delim);
+                    scores = new int[tokens.Length];
+                    for(int i = 0; i < tokens.Length; i++)
+                    {
+                        scores[i] = Convert.ToInt32(tokens[i]);
+                    }
                     // calculate the average by calling the method Average
-                    average = Average(delim);
+                    average = Average(scores);
                     // Display the average.
                     count++;
                     averagesListBox.Items.Add("The average for student " +
