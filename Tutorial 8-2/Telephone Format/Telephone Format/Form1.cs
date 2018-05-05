@@ -36,15 +36,14 @@ namespace Telephone_Format
         private bool IsValidNumber(string str)
         {
             const int VALID_LENGTH = 10;  // Length of a valid string
-            bool valid = true;   // Flag to indicate validity
 
-            if (NumberDigits(str) != VALID_LENGTH)
-                valid = false;
-            for (int i = 0; i < str.Length; i++)
+            if (NumberDigits(str) != VALID_LENGTH)      // Return false if the length isn't correct
+                return false;
+            for (int i = 0; i < str.Length; i++)        // Return false if any part of the string isn't a digit
                 if (!char.IsDigit(str, i))
                     return false;
                     // Return the status.
-            return valid;
+            return true;
         }
 
         // The TelephoneFormat method accepts a string argument

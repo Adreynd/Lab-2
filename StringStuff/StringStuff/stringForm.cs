@@ -22,8 +22,8 @@ namespace String_Stuff
 
             for(int i = 0; i < input.Length; i++)
             {
-                if (char.IsUpper(input[i]))
-                    output += (char.ToLower(input[i]));
+                if (char.IsUpper(input[i]))         // If the character is uppercase...
+                    output += (char.ToLower(input[i]));     // Copy it as a lowercase letter
                 else if (char.IsLower(input[i]))
                     output += (char.ToUpper(input[i]));
             }
@@ -43,9 +43,9 @@ namespace String_Stuff
 
         private string PigLatin(string input)   // Takes a string, moves the lirst letter to the end, adds "ay" to the end, then returns that string
         {
-            string output = input;
-            output = output.Remove(0, 1);
-            output += input[0] + "ay";
+            string output = input;                  // Copy the string
+            output = output.Remove(0, 1);           // Remove the first letter
+            output += input[0] + "ay";              // Add the removed letter to the end and add "ay" after that
 
             return output;
         }
@@ -63,8 +63,8 @@ namespace String_Stuff
             {
                 for(int a = 0; a < alphabet.Length; a++)
                 {
-                    if (input[i] == alphabet[a])
-                        output += alphabet[(a + charsToShift) % alphabet.Length];
+                    if (input[i] == alphabet[a])            // Test whether or not the character is part of the lowercase or uppercase alphabet
+                        output += alphabet[(a + charsToShift) % alphabet.Length];       // Then add the coresponding letter to the output string
                     else if (input[i] == ALPHABET[a])
                         output += ALPHABET[(a + charsToShift) % ALPHABET.Length];
                 }
@@ -86,8 +86,8 @@ namespace String_Stuff
             {
                 for (int a = 0; a < alphabet.Length; a++)
                 {
-                    if (input[i] == alphabet[a] || input[i] == ALPHABET[a])
-                        output += charsToSub[a];
+                    if (input[i] == alphabet[a] || input[i] == ALPHABET[a])         // Test if the character is a part of either alphabet
+                        output += charsToSub[a];            // Then add the coresponding character from the string "charsToSub"
                 }
             }
 
@@ -96,9 +96,9 @@ namespace String_Stuff
 
         private void transformButton_Click(object sender, EventArgs e)
         {
-            string input = inputTextBox.Text;
+            string input = inputTextBox.Text;                   // Take the users input
 
-            switchCaseTextBox.Text = SwitchCase(input);
+            switchCaseTextBox.Text = SwitchCase(input);         // Then fill the message boxs with the coresponding output
             reverseTextBox.Text = Reverse(input);
             pigLatinTextBox.Text = PigLatin(input);
             shiftTextBox.Text = ShiftCypher(input, 1);

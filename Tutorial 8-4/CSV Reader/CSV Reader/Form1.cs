@@ -43,7 +43,7 @@ namespace CSV_Reader
                 double average = 0;     // Test score average
                 int count = 0;          // Holds the student index
 
-                // Create a delimiter array.
+                // Create a delimiter variable
                 char delim = ',';
 
                 // Open the CSV file.
@@ -56,13 +56,13 @@ namespace CSV_Reader
                     // Get the test scores as tokens.
                     tokens = line.Split(delim);
                     scores = new int[tokens.Length];
+
                     for(int i = 0; i < tokens.Length; i++)
-                    {
                         scores[i] = Convert.ToInt32(tokens[i]);
-                    }
+
                     // calculate the average by calling the method Average
-                    average = Average(scores);
                     // Display the average.
+                    average = Average(scores);
                     count++;
                     averagesListBox.Items.Add("The average for student " +
                         count + " is " + average.ToString("n1"));
